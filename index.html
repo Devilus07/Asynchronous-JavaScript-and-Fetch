@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Pokemon Team Builder</title>
   <link rel="stylesheet" href="style.css">
 </head>
@@ -12,39 +13,35 @@
 
     <div class="row">
       <label for="pokemonInput"><b>Name or ID</b></label>
-      <input id="pokemonInput" type="text" placeholder="snorlax or 143">
-      <button id="findButton">Find</button>
+      <input id="pokemonInput" type="text" placeholder="snorlax or 143" />
+      <button id="findButton" type="button">Find</button>
     </div>
 
     <p id="message" class="center"></p>
 
+    <!-- This is just a container. JS will insert the IMG and AUDIO here after fetch. -->
     <div id="pokemonViewer" class="center" style="display:none;">
-      <div class="row">
-        <img id="pokemonImage" alt="Pokemon" width="220" hidden>
-      </div>
-
-      <div class="row">
-        <audio id="pokemonAudio" controls></audio>
-      </div>
+      <div class="row" id="pokemonImageHolder"></div>
+      <div class="row" id="pokemonAudioHolder"></div>
     </div>
 
-      <div class="row">
-        <select id="moveDropdown1"></select>
-        <select id="moveDropdown2"></select>
-      </div>
+    <!-- Dropdowns always visible -->
+    <div class="row">
+      <select id="moveDropdown1"></select>
+      <select id="moveDropdown2"></select>
+    </div>
 
-      <div class="row">
-        <select id="moveDropdown3"></select>
-        <select id="moveDropdown4"></select>
-      </div>
+    <div class="row">
+      <select id="moveDropdown3"></select>
+      <select id="moveDropdown4"></select>
+    </div>
 
-      <div class="row">
-        <button id="addToTeamButton">Add to Team</button>
-      </div>
+    <div class="row">
+      <button id="addToTeamButton" type="button">Add to Team</button>
+    </div>
 
     <div id="teamSection" style="display:none;">
       <h3 class="center">Your Team</h3>
-
       <table>
         <thead>
           <tr>
