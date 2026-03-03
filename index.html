@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>Pokemon Team Builder</title>
   <link rel="stylesheet" href="style.css">
 </head>
@@ -10,27 +10,24 @@
   <div class="box">
     <h2 class="center">Pokemon Team Builder</h2>
 
-    <!-- user types a pokemon name or id -->
     <div class="row">
       <label for="pokemonInput"><b>Name or ID</b></label>
-      <input id="pokemonInput" type="text" placeholder="snorlax or 143" />
+      <input id="pokemonInput" type="text" placeholder="snorlax or 143">
       <button id="findButton">Find</button>
     </div>
 
-    <!-- messages to user -->
     <p id="message" class="center"></p>
 
-    <!-- this section is hidden until we successfully load a pokemon -->
     <div id="pokemonViewer" class="center" style="display:none;">
       <div class="row">
-        <img id="pokemonImage" alt="Pokemon" width="220" />
+        <img id="pokemonImage" alt="Pokemon" width="220">
       </div>
 
       <div class="row">
         <audio id="pokemonAudio" controls></audio>
       </div>
     </div>
-      <!-- ALWAYS VISIBLE -->
+
       <div class="row">
         <select id="moveDropdown1"></select>
         <select id="moveDropdown2"></select>
@@ -45,7 +42,6 @@
         <button id="addToTeamButton">Add to Team</button>
       </div>
 
-    <!-- team output -->
     <div id="teamSection" style="display:none;">
       <h3 class="center">Your Team</h3>
 
