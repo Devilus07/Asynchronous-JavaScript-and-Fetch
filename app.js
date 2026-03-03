@@ -31,14 +31,14 @@ let team = [];
 const cache = new Map();
 
 
-// Helper: set message text
+// message texts
 function setMessage(text, isError = false) {
   message.textContent = text;
   message.style.color = isError ? "crimson" : "black";
 }
 
 
-// Helper: fill ONE dropdown with moves
+// fill ONE dropdown with moves
 function fillMoveDropdown(dropdown, moveNames) {
   dropdown.innerHTML = "";
 
@@ -62,20 +62,19 @@ function fillMoveDropdown(dropdown, moveNames) {
 
 // When user clicks "Find"
 findButton.addEventListener("click", async () => {
-  // 1) get user input
+  // get user input
   const userText = pokemonInput.value.trim().toLowerCase();
-
-  // 2) basic validation
   if (userText === "") {
     setMessage("Type a Pokemon name or ID first.", true);
     return;
   }
 
   setMessage("Loading...");
-  pokemonViewer.style.display = "none"; // hide until loaded
+  // hide until loaded
+  pokemonViewer.style.display = "none"; 
   currentPokemonData = null;
 
-  // 3) if it's already cached, use it
+  // if it's already cached then use it
   if (cache.has(userText)) {
     const cachedData = cache.get(userText);
     setMessage("Loaded from cache ✅");
@@ -83,7 +82,7 @@ findButton.addEventListener("click", async () => {
     return;
   }
 
-  // 4) fetch from PokeAPI
+  // fetch from PokeAPI
   try {
     const url = `https://pokeapi.co/api/v2/pokemon/${userText}`;
     const response = await fetch(url);
@@ -96,12 +95,12 @@ findButton.addEventListener("click", async () => {
 
     const data = await response.json();
 
-    // 5) save in cache
+    // save in cache
     cache.set(userText, data);
 
     setMessage(`Loaded: ${data.name} ✅`);
 
-    // 6) show it
+    // show it
     showPokemonOnScreen(data);
 
   } catch (err) {
@@ -110,9 +109,7 @@ findButton.addEventListener("click", async () => {
   }
 });
 
-// --------------------
 // Put pokemon info on the page
-// --------------------
 function showPokemonOnScreen(data) {
   currentPokemonData = data;
 
@@ -121,8 +118,9 @@ function showPokemonOnScreen(data) {
 
   // image
   pokemonImage.src = data.sprites.front_default;
+  pokemonImage.hidden = false;
 
-  // audio (sometimes missing, so we handle it safely)
+  // audio 
   const audioUrl = (data.cries && (data.cries.latest || data.cries.legacy)) ? (data.cries.latest || data.cries.legacy) : "";
 
   if (audioUrl) {
@@ -145,9 +143,7 @@ function showPokemonOnScreen(data) {
   fillMoveDropdown(moveDropdown4, moveNames);
 }
 
-// --------------------
-// When user clicks "Add to Team"
-// --------------------
+// user clicks "Add to Team"
 addToTeamButton.addEventListener("click", () => {
   if (!currentPokemonData) {
     setMessage("Search for a Pokemon first.", true);
@@ -178,9 +174,7 @@ addToTeamButton.addEventListener("click", () => {
   setMessage(`${teamMember.name} added to team ✅`);
 });
 
-// --------------------
-// Show the team in the table
-// --------------------
+// show the team in the table
 function renderTeam() {
   teamSection.style.display = "block";
   teamTableBody.innerHTML = "";
@@ -215,4 +209,5 @@ function renderTeam() {
 
     teamTableBody.appendChild(row);
   }
+
 }
